@@ -6,23 +6,20 @@
     app:startDestination="@id/moviesFragment">
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.msf.myomdb.MoviesListFragment"
+        android:name="com.msf.myomdb.view.MoviesListFragment"
         android:label="fragment_movie_list"
         tools:layout="@layout/fragment_movie_list" >
         <action
             android:id="@+id/action_moviesFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.msf.myomdb.MoviesListFragment"
-        android:label="fragment_single_movie"
-        tools:layout="@layout/fragment_movie" >
+        android:name="com.msf.myomdb.view.MovieFragment"
+        android:label="MovieFragment" >
         <action
             android:id="@+id/action_movieFragment_to_moviesFragment"
-            app:destination="@id/moviesFragment"
-            app:popUpTo="@+id/moviesFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/moviesFragment" />
     </fragment>
+
 </navigation>
