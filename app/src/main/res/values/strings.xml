@@ -5,7 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="poster">Poster</string>
     <string name="rating">Rating</string>
-    <string name="none_movie">None movie saved</string>
+    <string name="no_movie_saved">No movie saved</string>
     <string name="info_date_duration_movie">$1s | $2s</string>
     <string name="label_resume">Resume</string>
     <string name="add">Add</string>
