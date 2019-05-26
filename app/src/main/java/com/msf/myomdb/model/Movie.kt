@@ -1,82 +1,107 @@
 package com.msf.myomdb.model
 
+import android.os.Parcel
+import android.os.Parcelable
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "movies")
-class Movie {
+class Movie() : Parcelable {
 
     @SerializedName("imdbID")
     @PrimaryKey
-    val imdbID: String? = null
+    @NonNull
+    var imdbID: String? = null
 
-    @SerializedName("title")
-    val title: String? = null
+    @SerializedName("Title")
+    var title: String? = null
     
-    @SerializedName("year")
-    val year: Int? = null
+    @SerializedName("Year")
+    var year: Int? = null
     
-    @SerializedName("rated")
-    val rated: String? = null
+    @SerializedName("Rated")
+    var rated: String? = null
     
-    @SerializedName("released")
-    val released: String? = null
+    @SerializedName("Released")
+    var released: String? = null
             
-    @SerializedName("runtime")
-    val runtime: String? = null
+    @SerializedName("Runtime")
+    var runtime: String? = null
     
-    @SerializedName("genre")
-    val genre: String? = null
+    @SerializedName("Genre")
+    var genre: String? = null
 
-    @SerializedName("director")
-    val director: String? = null
+    @SerializedName("Director")
+    var director: String? = null
 
-    @SerializedName("writer")
-    val writer: String? = null
+    @SerializedName("Writer")
+    var writer: String? = null
 
-    @SerializedName("actors")
-    val actors: String? = null
+    @SerializedName("Actors")
+    var actors: String? = null
 
-    @SerializedName("plot")
-    val plot: String? = null
+    @SerializedName("Plot")
+    var plot: String? = null
 
-    @SerializedName("language")
-    val language: String? = null
+    @SerializedName("Language")
+    var language: String? = null
 
-    @SerializedName("country")
-    val country: String? = null
+    @SerializedName("Country")
+    var country: String? = null
 
-    @SerializedName("awards")
-    val awards: String? = null
+    @SerializedName("Awards")
+    var awards: String? = null
 
-    @SerializedName("poster")
-    val poster: String? = null
+    @SerializedName("Poster")
+    var poster: String? = null
 
-    @SerializedName("metascore")
-    val metascore: Int? = null
+    @SerializedName("Metascore")
+    var metascore: Int? = null
 
     @SerializedName("imdbRating")
-    val imdbRating: Double? = null
+    var imdbRating: Double? = null
 
     @SerializedName("imdbVotes")
-    val imdbVotes: String? = null
+    var imdbVotes: String? = null
 
-    @SerializedName("type")
-    val type: String? = null
+    @SerializedName("Type")
+    var type: String? = null
 
-    @SerializedName("dVD")
-    val dVD: String? = null
+    @SerializedName("DVD")
+    var dVD: String? = null
 
-    @SerializedName("boxOffice")
-    val boxOffice: String? = null
+    @SerializedName("BoxOffice")
+    var boxOffice: String? = null
 
-    @SerializedName("production")
-    val production: String? = null
+    @SerializedName("Production")
+    var production: String? = null
 
-    @SerializedName("website")
-    val website: String? = null
+    @SerializedName("Website")
+    var website: String? = null
 
-    @SerializedName("response")
-    val response: Boolean = false
+    @SerializedName("Response")
+    var response: Boolean = false
+
+    constructor(parcel: Parcel) : this()
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Movie> {
+        override fun createFromParcel(parcel: Parcel): Movie {
+            return Movie(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Movie?> {
+            return arrayOfNulls(size)
+        }
+    }
+
 }

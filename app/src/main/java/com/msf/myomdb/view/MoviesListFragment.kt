@@ -15,6 +15,7 @@ import com.msf.myomdb.model.Movie
 import com.msf.myomdb.util.ItemDecoration
 import com.msf.myomdb.viewmodel.MoviesViewModel
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 
 
 class MoviesListFragment : Fragment() {
@@ -34,13 +35,16 @@ class MoviesListFragment : Fragment() {
         }
         setVisibilityViews(false)
         moviesViewModel.getMovies()
+        binding.searchMovie.setOnClickListener {
+            it.findNavController().navigate(R.id.action_moviesFragment_to_searchMovieFragment)
+        }
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
         moviesViewModel.liveDataMovies?.observe(this, Observer {
-            if (it == null){
+            if (it == null || it!!.isEmpty()){
                 showMessage()
             } else {
                 binding.recyclerViewMovies.adapter = MovieRecyclerViewAdapter(it, listener)
@@ -59,14 +63,14 @@ class MoviesListFragment : Fragment() {
         binding.recyclerViewMovies.visibility = if(visibilityOfRecycler) View.VISIBLE else View.GONE
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
-        }
-    }
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        if (context is OnListFragmentInteractionListener) {
+//            listener = context
+//        } else {
+//            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
+//        }
+//    }
 
     override fun onDetach() {
         super.onDetach()

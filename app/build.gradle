@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -21,7 +22,7 @@ android {
         }
         buildTypes.each {
             it.buildConfigField 'String', 'OMDB_KEY', '"911ecd56"'
-            it.buildConfigField 'String', 'MOVIE_ROOT_URI', '"http://www.omdbapi.com/?"'
+            it.buildConfigField 'String', 'MOVIE_ROOT_URI', '"http://www.omdbapi.com/"'
             it.buildConfigField 'String', 'POSTER_ROOT_URI', '"https://m.media-amazon.com/images/M/"'
         }
     }
@@ -46,6 +47,7 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

@@ -9,17 +9,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
 
-    private val retrofit: Retrofit by lazy {
-         Retrofit.Builder().baseUrl(BuildConfig.MOVIE_ROOT_URI)
-                    .addConverterFactory(GsonConverterFactory.create(createGson()))
-                    .build()
-    }
 
-    fun getRetrofitInstance(): Retrofit {
-        return retrofit
+    private val retrofit: Retrofit by lazy {
+        Retrofit.Builder().baseUrl(BuildConfig.MOVIE_ROOT_URI)
+                .addConverterFactory(GsonConverterFactory.create(createGson()))
+                .build()
     }
 
     private fun createGson(): Gson {
         return GsonBuilder().setDateFormat(Constants.PATTERN_DATE_CONVERT).create()
     }
+
+    fun movieService(): MovieService {
+        return retrofit.create(MovieService::class.java)
+    }
+
+
 }

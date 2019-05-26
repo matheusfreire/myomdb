@@ -9,4 +9,6 @@
     <string name="info_date_duration_movie">$1s | $2s</string>
     <string name="label_resume">Resume</string>
     <string name="add">Add</string>
+    <string name="title_year">$1s ($2s)</string>
+    <string name="type_to_search">Type to search</string>
 </resources>
