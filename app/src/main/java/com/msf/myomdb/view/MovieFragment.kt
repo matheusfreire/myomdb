@@ -62,7 +62,11 @@ class MovieFragment : Fragment() {
     }
 
     private fun getVoteAverage(movieResult: Movie): Float {
-        return movieResult.imdbRating!!.toFloat() / 2
+        try{
+            return movieResult.imdbRating!!.toFloat() / 2
+        } catch (e: Exception){
+            return 0f
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
