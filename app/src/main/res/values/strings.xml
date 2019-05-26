@@ -14,4 +14,6 @@
     <string name="no_movie_founded">No movie founded</string>
     <string name="save">Save</string>
     <string name="remove">Remove movie</string>
+    <string name="movie_deleted_successfully">Movie deleted successfully!</string>
+    <string name="movie_saved_successfully">Movie saved successfully</string>
 </resources>

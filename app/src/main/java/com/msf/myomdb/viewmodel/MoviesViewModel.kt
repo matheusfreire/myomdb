@@ -21,6 +21,8 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
         MutableLiveData<Movie>()
     }
 
+    var liveDataMovie: LiveData<Movie>? = null
+
     lateinit var movieSelected: Movie
 
     fun getMovies() {
@@ -53,6 +55,11 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
     fun deleteMovie() {
         val database = MyMovieDatabase.getInstance(getApplication())
         AppExecutor.sInstance.getDbIo().execute { database.movieDao().deleteMovie(movieSelected) }
+    }
+
+    fun isMovieSaved(){
+        val database = MyMovieDatabase.getInstance(getApplication())
+        liveDataMovie = database.movieDao().loadMovieById(movieSelected.imdbID!!)
     }
 }
 

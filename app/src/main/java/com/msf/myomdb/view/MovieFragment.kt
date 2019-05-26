@@ -12,6 +12,8 @@ import com.squareup.picasso.Picasso
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.widget.RatingBar
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.msf.myomdb.util.Constants
 import com.msf.myomdb.model.Movie
 
@@ -20,8 +22,8 @@ class MovieFragment : Fragment() {
 
     private var isSaved: Boolean = false
     private lateinit var moviesViewModel: MoviesViewModel
-
     private lateinit var menuItem:MenuItem
+    private lateinit var dataBinding: FragmentMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +31,11 @@ class MovieFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        val dataBinding:FragmentMovieBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie,container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie,container, false)
         moviesViewModel = activity?.run {
             ViewModelProviders.of(this).get(MoviesViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
+        isMovieSaved()
         dataBinding.apply {
             movie = moviesViewModel.movieSelected
             Picasso.get().load(moviesViewModel.movieSelected.poster).into(posterView)
@@ -40,6 +43,14 @@ class MovieFragment : Fragment() {
         }
         animateRatingbar(dataBinding.ratebar)
         return dataBinding.root
+    }
+
+    private fun isMovieSaved() {
+        moviesViewModel.isMovieSaved()
+        moviesViewModel.liveDataMovie!!.observe(this, Observer {
+            isSaved = it != null
+            changeItem(isSaved)
+        })
     }
 
     @SuppressLint("ObjectAnimatorBinding")
@@ -84,9 +95,15 @@ class MovieFragment : Fragment() {
         if(isSaved){
             moviesViewModel.deleteMovie()
             changeItem(false)
+            showSnackBar(R.string.movie_deleted_successfully)
         } else {
             moviesViewModel.saveMovie()
             changeItem(true)
+            showSnackBar(R.string.movie_saved_successfully)
         }
+    }
+    private fun showSnackBar(idMessage: Int){
+        Snackbar.make(dataBinding.root, getString(idMessage),
+                Snackbar.LENGTH_LONG).show()
     }
 }
