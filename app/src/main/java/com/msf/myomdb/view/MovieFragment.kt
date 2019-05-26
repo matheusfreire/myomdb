@@ -17,10 +17,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.msf.myomdb.util.Constants
 import com.msf.myomdb.model.Movie
 
+var saved: Boolean = false
 
 class MovieFragment : Fragment() {
 
-    private var isSaved: Boolean = false
     private lateinit var moviesViewModel: MoviesViewModel
     private lateinit var menuItem:MenuItem
     private lateinit var dataBinding: FragmentMovieBinding
@@ -50,8 +50,8 @@ class MovieFragment : Fragment() {
     private fun isMovieSaved() {
         moviesViewModel.isMovieSaved()
         moviesViewModel.liveDataMovie!!.observe(this, Observer {
-            isSaved = it != null
-            changeItem(isSaved)
+            saved = it != null
+            changeItem(saved)
         })
     }
 
@@ -64,16 +64,16 @@ class MovieFragment : Fragment() {
     }
 
     private fun getVoteAverage(movieResult: Movie): Float {
-        try{
-            return movieResult.imdbRating!!.toFloat() / 2
+        return try{
+            movieResult.imdbRating!!.toFloat() / 2
         } catch (e: Exception){
-            return 0f
+            0f
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater!!.inflate(R.menu.menu_movie, menu)
-        if(isSaved){
+        if(saved){
             menu!!.findItem(R.id.action_save_movie).icon = context!!.getDrawable(R.drawable.ic_delete)
         }
         menuItem = menu!!.findItem(R.id.action_save_movie)
@@ -98,7 +98,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun saveOrDeleteMovie() {
-        if(isSaved){
+        if(saved){
             moviesViewModel.deleteMovie()
             changeItem(false)
             showSnackBar(R.string.movie_deleted_successfully)
