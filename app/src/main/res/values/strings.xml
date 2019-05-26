@@ -11,4 +11,5 @@
     <string name="add">Add</string>
     <string name="title_year">$1s ($2s)</string>
     <string name="type_to_search">Type to search</string>
+    <string name="no_movie_founded">No movie founded</string>
 </resources>

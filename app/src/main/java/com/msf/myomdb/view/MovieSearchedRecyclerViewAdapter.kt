@@ -37,16 +37,7 @@ class MovieSearchedRecyclerViewAdapter(val movie: Movie,val movieClickedListener
 
     inner class MovieSearchedHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         fun bind(movie:Movie){
-            with(itemView) {
-                val stringFormat = String.format(context.getString(R.string.title_year), movie.title,movie!!.year)
-                itemView.title_movie_searched.text = stringFormat
-                //                promotion_item_title.text = item.title
-//                promotion_item_subtitle.text = textForDiscount(item.discount)
-//                promotion_item_description.text = item.description
-//                promotion_item_special_label.visibility = if (item.isSpecial) View.VISIBLE else View.GONE
-
-            }
-
+            itemView.title_movie_searched.text = "${movie.title} (${movie.year})"
         }
     }
 

@@ -24,11 +24,11 @@
             android:hint="@string/type_to_search"/>
 
         <TextView
-            android:id="@+id/error_message"
+            android:id="@+id/message_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="@string/no_movie_saved"
+            android:text="@string/no_movie_founded"
             android:textSize="20sp"
             android:layout_centerInParent="true"
             android:visibility="invisible"

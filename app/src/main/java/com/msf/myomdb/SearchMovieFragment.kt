@@ -43,7 +43,7 @@ class SearchMovieFragment : Fragment() {
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(start != before){
-                    setVisibilityViews(false)
+                    setProgress()
                 }
             }
 
@@ -55,7 +55,7 @@ class SearchMovieFragment : Fragment() {
 
         })
         moviesViewModel.mutableLiveDataMovie.observe(this, Observer {
-            if(it != null){
+            if(it?.title != null){
                 binding.recyclerMovieSearched.adapter = MovieSearchedRecyclerViewAdapter(it, movieClickedListener)
                 setVisibilityViews(true)
             } else {
@@ -64,14 +64,21 @@ class SearchMovieFragment : Fragment() {
         })
     }
 
+    private fun setProgress() {
+        binding.progressLoading.visibility = View.VISIBLE
+        binding.messageInfo.visibility = View.GONE
+        binding.recyclerMovieSearched.visibility = View.GONE
+    }
 
     private fun showMessage() {
         binding.progressLoading.visibility = View.GONE
-        binding.errorMessage.visibility = View.VISIBLE
+        binding.messageInfo.visibility = View.VISIBLE
+        binding.recyclerMovieSearched.visibility = View.GONE
     }
 
     private fun setVisibilityViews(visibilityOfRecycler: Boolean){
         binding.progressLoading.visibility = if(visibilityOfRecycler) View.GONE else View.VISIBLE
+        binding.messageInfo.visibility = if(visibilityOfRecycler) View.GONE else View.VISIBLE
         binding.recyclerMovieSearched.visibility = if(visibilityOfRecycler) View.VISIBLE else View.GONE
     }
 
