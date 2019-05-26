@@ -1,10 +1,14 @@
 package com.msf.myomdb.view
 
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -54,6 +58,10 @@ class SearchMovieFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(s!!.length >= QTDE_CHAR_TO_SEARCH){
+                    if(!isOnline()){
+                        showMessaOffline()
+                        return
+                    }
                     moviesViewModel.searchMovie(s.toString())
                 }
             }
@@ -67,6 +75,17 @@ class SearchMovieFragment : Fragment() {
                 showMessage()
             }
         })
+    }
+
+    private fun showMessaOffline() {
+        binding.messageInfo.text = getString(R.string.no_network)
+        showMessage()
+    }
+
+    private fun isOnline(): Boolean {
+        val connectivityManager = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 
     private fun setProgress() {

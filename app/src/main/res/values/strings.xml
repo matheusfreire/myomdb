@@ -16,4 +16,5 @@
     <string name="remove">Remove movie</string>
     <string name="movie_deleted_successfully">Movie deleted successfully!</string>
     <string name="movie_saved_successfully">Movie saved successfully</string>
+    <string name="no_network">No network detected</string>
 </resources>
