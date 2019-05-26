@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.msf.myomdb.R
 import com.msf.myomdb.SearchMovieFragment
 import com.msf.myomdb.model.Movie
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_searched_content.view.*
 
 class MovieSearchedRecyclerViewAdapter(val movie: Movie,val movieClickedListener: SearchMovieFragment.OnMovieClicked?) : RecyclerView.Adapter<MovieSearchedRecyclerViewAdapter.MovieSearchedHolder>() {
@@ -32,6 +33,7 @@ class MovieSearchedRecyclerViewAdapter(val movie: Movie,val movieClickedListener
         with(holder.mView) {
             tag = movie
             setOnClickListener(mOnClickListener)
+            Picasso.get().load(movie.poster).into(poster_searched)
         }
     }
 

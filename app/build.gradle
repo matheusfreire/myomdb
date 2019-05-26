@@ -23,7 +23,6 @@ android {
         buildTypes.each {
             it.buildConfigField 'String', 'OMDB_KEY', '"911ecd56"'
             it.buildConfigField 'String', 'MOVIE_ROOT_URI', '"http://www.omdbapi.com/"'
-            it.buildConfigField 'String', 'POSTER_ROOT_URI', '"https://m.media-amazon.com/images/M/"'
         }
     }
     dataBinding {
@@ -44,6 +43,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
     implementation "androidx.recyclerview:recyclerview:$version_material"
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"

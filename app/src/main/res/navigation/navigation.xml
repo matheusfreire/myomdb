@@ -14,7 +14,11 @@
             app:destination="@id/movieFragment" />
         <action
             android:id="@+id/action_moviesFragment_to_searchMovieFragment"
-            app:destination="@id/searchMovieFragment" />
+            app:destination="@id/searchMovieFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"
@@ -27,6 +31,16 @@
     <fragment
         android:id="@+id/searchMovieFragment"
         android:name="com.msf.myomdb.SearchMovieFragment"
-        android:label="SearchMovieFragment" />
+        android:label="SearchMovieFragment" >
+        <action
+            android:id="@+id/action_searchMovieFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/moviesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

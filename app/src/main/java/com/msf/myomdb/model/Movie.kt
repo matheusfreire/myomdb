@@ -19,7 +19,7 @@ class Movie() : Parcelable {
     var title: String? = null
     
     @SerializedName("Year")
-    var year: Int? = null
+    var year: String? = null
     
     @SerializedName("Rated")
     var rated: String? = null
@@ -58,10 +58,10 @@ class Movie() : Parcelable {
     var poster: String? = null
 
     @SerializedName("Metascore")
-    var metascore: Int? = null
+    var metascore: String? = null
 
     @SerializedName("imdbRating")
-    var imdbRating: Double? = null
+    var imdbRating: String? = null
 
     @SerializedName("imdbVotes")
     var imdbVotes: String? = null

@@ -10,6 +10,7 @@ buildscript {
         version_navigation = '2.0.0'
         retrofit = '2.5.0'
         room_version = '2.1.0-beta01'
+        picasso_version = '2.71828'
     }
     repositories {
         google()

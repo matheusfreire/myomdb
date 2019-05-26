@@ -9,6 +9,9 @@ import com.msf.myomdb.R
 
 import com.msf.myomdb.view.MoviesListFragment.OnListFragmentInteractionListener
 import com.msf.myomdb.model.Movie
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.movie_content.view.*
+import kotlinx.android.synthetic.main.movie_searched_content.view.*
 
 class MovieRecyclerViewAdapter(private val mValues: List<Movie>,
                                private val mListener: OnListFragmentInteractionListener?): RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder>() {
@@ -33,6 +36,7 @@ class MovieRecyclerViewAdapter(private val mValues: List<Movie>,
         with(holder.mView) {
             tag = movie
             setOnClickListener(mOnClickListener)
+            Picasso.get().load(movie.poster).into(thumbnail)
         }
     }
 
