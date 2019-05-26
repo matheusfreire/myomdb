@@ -35,7 +35,9 @@ class MovieFragment : Fragment() {
         moviesViewModel = activity?.run {
             ViewModelProviders.of(this).get(MoviesViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
-        isMovieSaved()
+        if(savedInstanceState == null){
+            isMovieSaved()
+        }
         dataBinding.apply {
             movie = moviesViewModel.movieSelected
             Picasso.get().load(moviesViewModel.movieSelected.poster).into(posterView)
