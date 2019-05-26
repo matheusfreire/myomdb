@@ -12,4 +12,6 @@
     <string name="title_year">$1s ($2s)</string>
     <string name="type_to_search">Type to search</string>
     <string name="no_movie_founded">No movie founded</string>
+    <string name="save">Save</string>
+    <string name="remove">Remove movie</string>
 </resources>

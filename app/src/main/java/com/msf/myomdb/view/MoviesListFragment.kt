@@ -28,7 +28,9 @@ class MoviesListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_movie_list, container, false)
-        moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        moviesViewModel = activity?.run {
+            ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        } ?: throw Exception("Invalid Activity")
         with(binding.recyclerViewMovies) {
             layoutManager = GridLayoutManager(context, columnCount)
             addItemDecoration(ItemDecoration(columnCount, dpToPx(10)))
@@ -44,7 +46,7 @@ class MoviesListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         moviesViewModel.liveDataMovies?.observe(this, Observer {
-            if (it == null || it!!.isEmpty()){
+            if (it == null || it.isEmpty()){
                 showMessage()
             } else {
                 binding.recyclerViewMovies.adapter = MovieRecyclerViewAdapter(it, listener)

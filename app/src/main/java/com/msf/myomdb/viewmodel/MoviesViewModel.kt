@@ -20,6 +20,8 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
         MutableLiveData<Movie>()
     }
 
+    lateinit var movieSelected:Movie
+
     fun getMovies() {
         val database = MyMovieDatabase.getInstance(getApplication())
         liveDataMovies = database.movieDao().loadMovies()

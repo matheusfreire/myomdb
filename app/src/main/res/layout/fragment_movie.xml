@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="movie" type="com.msf.myomdb.model.Movie" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +22,7 @@
                 android:layout_height="120dp"
                 android:layout_marginStart="@dimen/margin_text"
                 android:layout_marginTop="@dimen/margin_text"
+                android:layout_marginBottom="@dimen/margin_text"
                 android:contentDescription="@string/poster"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -27,6 +33,7 @@
                 style="@style/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="@{movie.title}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/posterView"
@@ -38,14 +45,16 @@
                 style="@style/info_movie"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="@{movie.released}"
                 app:layout_constraintStart_toStartOf="@+id/title_movie"
                 app:layout_constraintTop_toBottomOf="@+id/title_movie"
                 tools:text="05 May 2017 | 182 min" />
 
             <RatingBar
                 android:id="@+id/ratebar"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:numStars="5"
                 android:stepSize="0.1"
                 android:theme="@style/RatingBar"
@@ -71,6 +80,7 @@
                 android:drawableStart="@drawable/ic_language"
                 android:drawablePadding="@dimen/margin_text"
                 android:gravity="start"
+                android:text="@{movie.language}"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/view_separator_1"
@@ -82,9 +92,10 @@
                 android:id="@+id/resume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="fill"
                 android:paddingStart="@dimen/margin_text"
                 android:paddingEnd="@dimen/margin_text"
-                android:gravity="fill"
+                android:text="@{movie.plot}"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -111,6 +122,7 @@
                 android:drawableStart="@drawable/ic_award"
                 android:drawablePadding="@dimen/margin_text"
                 android:gravity="start"
+                android:text="@{movie.awards}"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/view_separator_2"
@@ -125,6 +137,7 @@
                 android:drawableStart="@drawable/ic_director"
                 android:drawablePadding="@dimen/margin_text"
                 android:gravity="start"
+                android:text="@{movie.director}"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/awards"
@@ -139,6 +152,7 @@
                 android:drawableStart="@drawable/ic_group"
                 android:drawablePadding="@dimen/margin_text"
                 android:gravity="start"
+                android:text="@{movie.actors}"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/director"

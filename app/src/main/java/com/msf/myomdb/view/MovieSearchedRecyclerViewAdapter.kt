@@ -3,21 +3,26 @@ package com.msf.myomdb.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.msf.myomdb.R
-import com.msf.myomdb.SearchMovieFragment
 import com.msf.myomdb.model.Movie
+import com.msf.myomdb.viewmodel.MoviesViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_searched_content.view.*
 
-class MovieSearchedRecyclerViewAdapter(val movie: Movie,val movieClickedListener: SearchMovieFragment.OnMovieClicked?) : RecyclerView.Adapter<MovieSearchedRecyclerViewAdapter.MovieSearchedHolder>() {
+
+
+class MovieSearchedRecyclerViewAdapter(val movie: Movie, val moviesViewModel: MoviesViewModel) : RecyclerView.Adapter<MovieSearchedRecyclerViewAdapter.MovieSearchedHolder>() {
 
     private val mOnClickListener: View.OnClickListener
+
 
     init {
         mOnClickListener = View.OnClickListener { v ->
             val movie = v.tag as Movie
-            movieClickedListener?.onMovieClicked(movie)
+            moviesViewModel.movieSelected = movie
+            v.findNavController().navigate(R.id.action_searchMovieFragment_to_movieFragment)
         }
     }
 
