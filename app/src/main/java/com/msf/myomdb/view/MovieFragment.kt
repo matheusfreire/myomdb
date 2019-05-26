@@ -21,6 +21,13 @@ class MovieFragment : Fragment() {
     private var isSaved: Boolean = false
     private lateinit var moviesViewModel: MoviesViewModel
 
+    private lateinit var menuItem:MenuItem
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         val dataBinding:FragmentMovieBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie,container, false)
         moviesViewModel = activity?.run {
@@ -39,7 +46,7 @@ class MovieFragment : Fragment() {
     private fun animateRatingbar(mRatebar: RatingBar) {
         val current = mRatebar.rating
         val anim = ObjectAnimator.ofFloat(mRatebar, "mRatebar", 0f, current)
-        anim.setDuration(Constants.DURATION_ANIMATION)
+        anim.duration = Constants.DURATION_ANIMATION
         anim.start()
     }
 
@@ -52,6 +59,7 @@ class MovieFragment : Fragment() {
         if(isSaved){
             menu!!.findItem(R.id.action_save_movie).icon = context!!.getDrawable(R.drawable.ic_delete)
         }
+        menuItem = menu!!.findItem(R.id.action_save_movie)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -62,11 +70,23 @@ class MovieFragment : Fragment() {
         return true
     }
 
+    private fun changeItem(saved:Boolean){
+        activity!!.runOnUiThread{
+            if(saved){
+                menuItem.icon = context!!.getDrawable(R.drawable.ic_delete)
+            } else {
+                menuItem.icon = context!!.getDrawable(R.drawable.ic_done)
+            }
+        }
+    }
+
     private fun saveOrDeleteMovie() {
         if(isSaved){
-
+            moviesViewModel.deleteMovie()
+            changeItem(false)
         } else {
-
+            moviesViewModel.saveMovie()
+            changeItem(true)
         }
     }
 }

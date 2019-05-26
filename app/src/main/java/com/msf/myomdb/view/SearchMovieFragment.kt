@@ -1,4 +1,4 @@
-package com.msf.myomdb
+package com.msf.myomdb.view
 
 
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.msf.myomdb.R
 import com.msf.myomdb.databinding.FragmentSearchMovieBinding
-import com.msf.myomdb.view.MovieSearchedRecyclerViewAdapter
 import com.msf.myomdb.viewmodel.MoviesViewModel
 
 
@@ -28,7 +28,7 @@ class SearchMovieFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_search_movie, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search_movie, container, false)
         moviesViewModel = activity?.run {
             ViewModelProviders.of(this).get(MoviesViewModel::class.java)
         } ?: throw Exception("Invalid Activity")

@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchMovieFragment"
-        android:name="com.msf.myomdb.SearchMovieFragment"
+        android:name="com.msf.myomdb.view.SearchMovieFragment"
         android:label="SearchMovieFragment" >
         <action
             android:id="@+id/action_searchMovieFragment_to_moviesFragment"

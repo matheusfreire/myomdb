@@ -22,7 +22,6 @@ class MoviesListFragment : Fragment() {
 
     private var columnCount = 2
 
-    private var listener: OnListFragmentInteractionListener? = null
     private lateinit var binding:FragmentMovieListBinding
     private lateinit var moviesViewModel:MoviesViewModel
 
@@ -49,7 +48,7 @@ class MoviesListFragment : Fragment() {
             if (it == null || it.isEmpty()){
                 showMessage()
             } else {
-                binding.recyclerViewMovies.adapter = MovieRecyclerViewAdapter(it, listener)
+                binding.recyclerViewMovies.adapter = MovieRecyclerViewAdapter(it, moviesViewModel)
                 setVisibilityViews(true)
             }
         })
@@ -65,26 +64,8 @@ class MoviesListFragment : Fragment() {
         binding.recyclerViewMovies.visibility = if(visibilityOfRecycler) View.VISIBLE else View.GONE
     }
 
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        if (context is OnListFragmentInteractionListener) {
-//            listener = context
-//        } else {
-//            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
-//        }
-//    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
     private fun dpToPx(dp: Int): Int {
         return (dp * resources.displayMetrics.density).toInt()
-    }
-
-    interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: Movie?)
     }
 
 }
